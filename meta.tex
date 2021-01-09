@@ -1,0 +1,186 @@
+% !TeX encoding = UTF-8
+
+\documentclass[xelatex,12pt,ja=standard,jafont=noto]{bxjsarticle}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{fontspec}
+%\usepackage[ipaex]{zxjafont}
+
+\usepackage{multirow,multicol}
+\usepackage{newtxtext,newtxmath}
+\usepackage{enumerate}
+\usepackage{natbib}
+\usepackage{here}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[usenames]{color}
+\usepackage{framed}
+\definecolor{shadecolor}{gray}{0.9}
+
+\newcommand{\tred}[1]{\textcolor{red}{#1}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{定義}[subsection]
+\newtheorem{example}{例}[subsection]
+\newtheorem{lemma}{補題}[subsection]
+\newtheorem{theorem}{定理}[subsection]
+\newtheorem{corollary}{系}[subsection]
+\renewcommand{\proofname}{\textbf{証明}}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+
+% 図表の表示設定
+\newcommand{\figref}[1]{図~\ref{#1}}
+\newcommand{\tabref}[1]{表~\ref{#1}}
+\newcommand{\defref}[1]{定義~\ref{#1}}
+\newcommand{\lemref}[1]{補題~\ref{#1}}
+\newcommand{\theref}[1]{定理~\ref{#1}}
+\newcommand{\colref}[1]{系~\ref{#1}}
+\newcommand{\exref}[1]{例~\ref{#1}}
+\newcommand{\secref}[1]{\ref{#1}節}
+\renewcommand{\eqref}[1]{(\ref{#1}) 式}
+\renewcommand{\figurename}{図} 
+\renewcommand{\tablename}{表}
+
+% 数式番号の設定
+\makeatletter
+\renewcommand{\theequation}{%
+\thesection.\arabic{equation}}
+\@addtoreset{equation}{section}
+\makeatother
+\makeatletter
+\renewcommand{\thetable}{%
+\thesection.\arabic{table}}
+\@addtoreset{table}{section}
+\makeatother
+\makeatletter
+\renewcommand{\thefigure}{%
+\thesection.\arabic{figure}}
+\@addtoreset{figure}{section}
+\makeatother
+  
+% ページの余白設定
+%\setlength{\topmargin}{0mm}         % トップとヘッダの間隔
+%\setlength{\headheight}{40mm}       % ヘッダの高さ
+%\addtolength{\topmargin}{-1in}      % 標準のマージン(1in)を引く
+%\setlength{\headsep}{0mm}           % ヘッダとテキストの間隔
+%\setlength{\textheight}{227mm}      % 本文の長さ(縦) 297-40-30=227
+
+%\setlength{\oddsidemargin}{30mm}    % 奇数ページ 左マージン 20mm
+%\addtolength{\oddsidemargin}{-1in}  % 標準のマージン(1in)を引く
+%\setlength{\evensidemargin}{30mm}   % 偶数ページ 左マージン 20mm
+%\addtolength{\evensidemargin}{-1in} % 標準のマージン(1in)を引く
+%\setlength{\textwidth}{150mm}       % 本文の長さ(横) 210-30-30=150
+
+\setlength{\parindent}{1em}
+
+% 図表とCaption間の余白
+\setlength{\abovecaptionskip}{0in}
+\setlength{\belowcaptionskip}{0in}
+
+% 記号系マクロ
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern3mu{#1#2}}}
+%\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\newcommand{\ubar}[1]{\text{\b{$#1$}}}
+\newcommand{\cd}{\rightsquigarrow}
+\newcommand{\cp}{\xrightarrow{P}}
+\newcommand{\cl}{\xrightarrow{L}}
+\newcommand{\ca}{\xrightarrow{\mathrm{as}}}
+\newcommand{\as}{\mbox{ as }}
+\newcommand{\lin}{\mathrm{lin}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\newcirc}{\raisebox{.35ex}{$\bigcirc\,$}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\g}[1]{\boldsymbol{\mathrm{#1}}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\sd}{\mathrm{sd}}
+\newcommand{\corr}{\mathrm{corr}}
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Bias}{\mathrm{Bias}}
+\newcommand{\bias}{\mathrm{bias}}
+\newcommand{\SD}{\mathrm{SD}}
+\newcommand{\SE}{\mathrm{SE}}
+\newcommand{\CV}{\mathrm{CV}}
+\newcommand{\logit}{\mathrm{logit}}
+\newcommand{\argmax}{\mathop{\rm argmax}\limits}
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\idif}{\,\mathrm{d}}
+\newcommand{\dPoisson}{\mathrm{Poisson}}
+\newcommand{\dN}{\mathrm{N}}
+\newcommand{\dLN}{\mathrm{LN}}
+\newcommand{\dMVN}{\mathrm{MVN}}
+\newcommand{\dU}{\mathrm{U}}
+\newcommand{\dBeta}{\mathrm{Beta}}
+\newcommand{\dGamma}{\mathrm{Gamma}}
+\newcommand{\dBin}{\mathrm{Bin}}
+\newcommand{\dNegbin}{\mathrm{Neg\mathchar`-bin}}
+\newcommand{\dBetabin}{\mathrm{Beta\mathchar`-bin}}
+\newcommand{\dInvGamma}{\mathrm{Inv\mathchar`-Gamma}}
+\newcommand{\dScaledInvChi}{\mathrm{Scale\mathchar`-inv\mathchar`-}\chi^2}
+\newcommand{\dExponential}{\mathrm{Exponential}}
+\newcommand{\dTriangle}{\mathrm{Triangle}}
+\newcommand{\dMVT}{\mathrm{MVT}}
+\newcommand{\dBernoulli}{\mathrm{Bernoulli}}
+\newcommand{\dDist}{\mathrm{Dist}}
+\newcommand{\const}{\mathrm{const.}}
+\newcommand{\tp}{T}
+\makeatletter
+\newcommand{\balert}[1]{\textcolor{blue}{#1}}
+\newcommand{\biggg}[1]{{\hbox{$\left#1\vbox to 20.5pt{}\right.\n@space$}}}
+\newcommand{\Biggg}[1]{{\hbox{$\left#1\vbox to 23.5pt{}\right.\n@space$}}}
+\newcommand{\bigggg}[1]{{\hbox{$\left#1\vbox to 26.5pt{}\right.\n@space$}}}
+\newcommand{\Bigggg}[1]{{\hbox{$\left#1\vbox to 29.5pt{}\right.\n@space$}}}
+\newcommand{\biggggg}[1]{{\hbox{$\left#1\vbox to 32.5pt{}\right.\n@space$}}}
+\newcommand{\Biggggg}[1]{{\hbox{$\left#1\vbox to 35.5pt{}\right.\n@space$}}}
+\newcommand{\bigggggg}[1]{{\hbox{$\left#1\vbox to 38.5pt{}\right.\n@space$}}}
+\newcommand{\Bigggggg}[1]{{\hbox{$\left#1\vbox to 41.5pt{}\right.\n@space$}}}
+\makeatother
+
+% hyperrefのオプションと, タイトル等の設定
+\hypersetup{%
+	%draft,%
+	pdftitle={メタアナリシスの統計手法},%
+	pdfauthor={長島健悟},%
+	pdfsubject={},%
+    bookmarksnumbered=true,%
+    bookmarksdepth=4,%
+    bookmarkstype=toc,
+    pdfstartview={FitH -32768},
+   	pdfkeywords={},%
+   	colorlinks=true,
+   	linkcolor=blue,
+   	citecolor=blue,
+   	urlcolor=blue,
+   	filecolor=blue,
+}
+
+\title{メタアナリシスの統計手法}
+\author{長島健悟}
+\date{\today}
+
+\begin{document}
+
+\pagenumbering{roman}
+\maketitle
+\pagenumbering{arabic}
+
+\pagestyle{plain}
+\tableofcontents
+
+\clearpage
+\input{./data/sec01.tex}
+\input{./data/sec02.tex}
+\input{./data/sec03.tex}
+
+\clearpage
+\appendix
+\addcontentsline{toc}{section}{\bibname}
+\bibliographystyle{apalike}
+\bibliography{./data/meta.bib}
+\nocite{*}
+
+\end{document}
